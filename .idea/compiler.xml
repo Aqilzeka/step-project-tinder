@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="StepprojectTinder" />
+        <module name="step-project-tinder" />
       </profile>
     </annotationProcessing>
   </component>
