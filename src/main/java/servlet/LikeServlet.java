@@ -1,9 +1,13 @@
 package servlet;
 
 import dao.UserDAO;
+import entity.Like;
 import entity.User;
+import service.LikeService;
+import service.LikedService;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,36 +17,47 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LikeServlet extends HttpServlet {
-    private TemplateEngine engine;
-    private static final long serialVersionUID = 1;
-    private final UserDAO userDAO = new UserDAO();
-    private final User user = new User();
 
-    public LikeServlet(TemplateEngine engine) {
-        this.engine = engine;
+    private static final long serialVersionUID = 1;
+    private final LikeService service;
+    private User user;
+
+
+    public LikeServlet(LikeService service) {
+        this.service = service;
+        user = service.getFirst();
     }
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final List<String> photo = userDAO.getPhotos();
-        final List<String> name = userDAO.getNames();
-        user.setName(name.get(0));
-        user.setPhoto(photo.get(0));
 
-        System.out.println(photo);
-        System.out.println(name);
+        Cookie[] cookies = req.getCookies();
+        for (Cookie cookie : cookies)
+            if (cookie.getName().equals("%ID%"))
+                service.setLocalId(Integer.parseInt(cookie.getValue()));
+        if (user.getId() == service.getLocalId())
+            user = service.getNext(user.getId());
 
-
-        List<User> users = Arrays.asList(user);
+        TemplateEngine engine = new TemplateEngine("./content");
         HashMap<String, Object> data = new HashMap<>();
-        data.put("users", users);
-
+        data.put("id", user.getId());
+        data.put("name", user.getName());
+        data.put("title",user.getTitle());
+        data.put("imgURL", user.getImgURL());
         engine.render("like.ftl", data, resp);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        String like = req.getParameter("like");
+        if (like != null) service.like(Integer.parseInt(like));
+        try {
+            user = service.getNext(user.getId());
+            resp.sendRedirect("/like");
+        } catch (Exception e){
+            resp.sendRedirect("/liked");
+        }
     }
 }

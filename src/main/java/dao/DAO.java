@@ -1,14 +1,19 @@
 package dao;
 
-import java.util.HashMap;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Stream;
 
-public interface DAO<T> {
+public interface DAO<T> extends Iterable<T> {
 
-    void insertEmailAndPwd(T t);
-    void insertNameGenderTitlePhoto(T t);
-    T select(String element);
-    List<String> getPhotos();
-    List<String> getNames();
-    List<String> getEmails();
+    List<Integer> getAllId();
+    List<T> getDatabase();
+    Stream<T> stream();
+    Integer size();
+    T get(int id);
+
+    void read();
+    void clear();
+    void add(T t);
+
 }
