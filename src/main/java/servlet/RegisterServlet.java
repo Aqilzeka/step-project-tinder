@@ -2,6 +2,7 @@ package servlet;
 
 import dao.UserDAO;
 import entity.User;
+import service.RegisterService;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 public class RegisterServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1;
-    private final UserDAO userDAO = new UserDAO();
+    private final RegisterService registerService = new RegisterService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,7 +41,7 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
-        userDAO.insertEmailAndPwd(new User(email,password));
+        registerService.register(new User(email,password));
 
         resp.sendRedirect("/myProfile");
     }

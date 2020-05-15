@@ -2,6 +2,7 @@ package servlet;
 
 import dao.UserDAO;
 import entity.User;
+import service.MyProfileService;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 public class MyProfileServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1;
-    private final UserDAO userDAO = new UserDAO();
+    private final MyProfileService myProfileService = new MyProfileService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,7 +45,7 @@ public class MyProfileServlet extends HttpServlet {
         System.out.println(gender);
         System.out.println(title);
         System.out.println(photo);
-        userDAO.add(new User(name,gender,title,photo));
+        myProfileService.add(new User(name,gender,title,photo));
         resp.sendRedirect("/login");
     }
 }

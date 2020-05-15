@@ -1,10 +1,19 @@
 package service;
 
 
+import dao.UserDAO;
+import entity.User;
+
 public class RegisterService {
 
-    public static final String INSERT = "INSERT INTO users" +
-            "(email, password, gender, imgurl, name, username) VALUES (?,?,?,?,?,?,?)";
+    UserDAO users;
 
+    public RegisterService(){
+        users = new UserDAO();
+    }
+
+    public void register(User user){
+        users.insertEmailAndPwd(user);
+    }
 
 }
