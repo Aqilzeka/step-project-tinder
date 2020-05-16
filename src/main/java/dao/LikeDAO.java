@@ -71,7 +71,6 @@ public class LikeDAO implements DAO<Like> {
             while (resultSet.next()){
                 likes.add(
                         new Like(
-                                resultSet.getInt("id"),
                                 resultSet.getInt("user_from"),
                                 resultSet.getInt("user_to")
                         )

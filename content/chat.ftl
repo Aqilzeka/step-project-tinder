@@ -51,6 +51,7 @@
                 <div class="col-md-12 chats pt-3 pl-2 pr-3 pb-3">
                     <ul class="p-0">
                         <#list messages as message>
+
                             ${message}
                         </#list>
                     </ul>
@@ -63,7 +64,7 @@
                         <div class="col-md-7 pl-0">
                             <label>
                                 <input type="text" style="visibility: visible" name="message" class="border-0"
-                                       placeholder=" Send message">
+                                       placeholder="Send message">
                             </label>
                             <button type="submit" name="send"><span>Send</span></button>
                         </div>

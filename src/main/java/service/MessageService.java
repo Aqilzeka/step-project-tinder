@@ -6,7 +6,6 @@ import entity.Message;
 import entity.User;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
@@ -58,25 +57,24 @@ public class MessageService {
     public void write(int sender, int receiver, String message){
         if (!message.isEmpty()){
             int lastLocalId = getLastLocalId(sender,receiver);
-            messages.add(new Message( receiver,sender,lastLocalId + 1,message,
+            messages.add(new Message(receiver,sender,lastLocalId + 1,message,
                     LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm MM-dd-yyyy"))));
         }
     }
 
     public List<Message> getMessage(int sender, int receiver){
         return messages.stream()
-                .filter(message -> (
+                .filter(message -> ((
                                 message.getUserFrom() == sender &&
-                                message.getUserTo() == receiver ||
+                                message.getUserTo() == receiver) || (
                                 message.getUserFrom() == receiver &&
-                                message.getUserTo() == sender
-                ) )
+                                message.getUserTo() == sender  )))
                 .sorted(Comparator.comparingInt(Message::getLocalId))
                 .collect(Collectors.toList());
     }
 
     public List<String> getFormattedMessages(int sender, int receiver){
-        messages.read();
+        this.messages.read();
         User receiverUser = users.get(receiver);
         List<Message> messages = getMessage(sender, receiver);
         return messages.stream()

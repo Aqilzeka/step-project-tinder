@@ -29,7 +29,10 @@ public class MessageServlet extends HttpServlet {
         for (Cookie cookie: cookies)
             if (cookie.getName().equals("%ID%"))
                 senderId = Integer.parseInt(cookie.getValue());
-        receiverId = Integer.parseInt(req.getPathInfo().substring(1));
+        final String replace = req.getPathInfo().substring(1);
+
+        System.out.println(replace);
+        receiverId = Integer.parseInt(replace);
 
         TemplateEngine engine = new TemplateEngine("./content");
         User user = service.getUser(receiverId);

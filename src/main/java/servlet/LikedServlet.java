@@ -29,6 +29,7 @@ public class LikedServlet extends HttpServlet {
                 localId = Integer.parseInt(cookie.getValue());
         }
         List<User> likedUsers = service.getLikedUsers(localId);
+        likedUsers.forEach(System.out::println);
         TemplateEngine engine = new TemplateEngine("./content");
         HashMap<String, Object> data = new HashMap<>();
         data.put("likedPeoples", likedUsers);

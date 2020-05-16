@@ -1,10 +1,7 @@
 package servlet;
 
-import dao.UserDAO;
-import entity.Like;
 import entity.User;
 import service.LikeService;
-import service.LikedService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -12,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class LikeServlet extends HttpServlet {
 
@@ -36,8 +31,12 @@ public class LikeServlet extends HttpServlet {
         for (Cookie cookie : cookies)
             if (cookie.getName().equals("%ID%"))
                 service.setLocalId(Integer.parseInt(cookie.getValue()));
-        if (user.getId() == service.getLocalId())
-            user = service.getNext(user.getId());
+        try {
+            if (user.getId() == service.getLocalId())
+                user = service.getNext(user.getId());
+        } catch (Exception e){
+            resp.sendRedirect("/liked");
+        }
 
         TemplateEngine engine = new TemplateEngine("./content");
         HashMap<String, Object> data = new HashMap<>();

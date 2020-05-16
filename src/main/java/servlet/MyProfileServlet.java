@@ -1,6 +1,5 @@
 package servlet;
 
-import dao.UserDAO;
 import entity.User;
 import service.MyProfileService;
 
@@ -13,7 +12,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.stream.Collectors;
 
 public class MyProfileServlet extends HttpServlet {
 
@@ -22,16 +20,10 @@ public class MyProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String content = new BufferedReader(new FileReader(new File("content/profile.html"))).lines()
-//                .collect(Collectors.joining("\n"));
-//
-//        try (PrintWriter writer = resp.getWriter()) {
-//            writer.write(content);
-//        }
 
         Path path = Paths.get("./content/profile.html");
         ServletOutputStream outputStream = resp.getOutputStream();
-        Files.copy(path,outputStream);
+        Files.copy(path, outputStream);
 
     }
 
@@ -45,7 +37,7 @@ public class MyProfileServlet extends HttpServlet {
         System.out.println(gender);
         System.out.println(title);
         System.out.println(photo);
-        myProfileService.add(new User(name,gender,title,photo));
+        myProfileService.add(new User(name, gender, title, photo));
         resp.sendRedirect("/login");
     }
 }
