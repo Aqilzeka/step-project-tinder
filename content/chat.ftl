@@ -51,7 +51,6 @@
                 <div class="col-md-12 chats pt-3 pl-2 pr-3 pb-3">
                     <ul class="p-0">
                         <#list messages as message>
-
                             ${message}
                         </#list>
                     </ul>

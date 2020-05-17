@@ -29,8 +29,7 @@ public class MessageServlet extends HttpServlet {
         for (Cookie cookie: cookies)
             if (cookie.getName().equals("%ID%"))
                 senderId = Integer.parseInt(cookie.getValue());
-        final String replace = req.getPathInfo().substring(1);
-
+        final String replace = req.getPathInfo().replace("/","");
         System.out.println(replace);
         receiverId = Integer.parseInt(replace);
 

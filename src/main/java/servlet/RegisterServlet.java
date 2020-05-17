@@ -23,12 +23,6 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String content = new BufferedReader(new FileReader(new File("content/register.html"))).lines()
-//                .collect(Collectors.joining("\n"));
-//
-//        try (PrintWriter writer = resp.getWriter()) {
-//            writer.write(content);
-//        }
 
         Path path = Paths.get("./content/register.html");
         ServletOutputStream outputStream = resp.getOutputStream();

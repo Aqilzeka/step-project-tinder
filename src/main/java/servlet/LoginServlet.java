@@ -26,18 +26,11 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String content = new BufferedReader(new FileReader(new File("content/login.html"))).lines()
-//                .collect(Collectors.joining("\n"));
-//
-//        try (PrintWriter writer = resp.getWriter()) {
-//            writer.write(content);
-//        }
-
         if (!loginService.isLogged()) {
             Cookie[] cookies = req.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("&ID&")) {
+                    if (cookie.getName().equals("%ID%")) {
                         cookie.setMaxAge(0);
                         resp.addCookie(cookie);
                     }
@@ -51,10 +44,6 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String email = req.getParameter("email");
-//        System.out.println(email);
-//        if (userDAO.getEmails().contains(email)) resp.sendRedirect("/like");
-//        else resp.sendRedirect("/register");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 

@@ -77,7 +77,8 @@ public class LikeDAO implements DAO<Like> {
                 );
             }
         } catch (SQLException e){
-            throw new RuntimeException("Can't read likes", e);
+            e.printStackTrace();
+            //throw new RuntimeException("Can't read likes", e);
         }
 
     }

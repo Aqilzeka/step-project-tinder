@@ -50,7 +50,7 @@
                                     <td  class="align-middle">
                                         <form method="get" action="/messages/${people.id}">
                                               <button type="submit" class="btn btn-outline-success btn-block"></button>
-                                        <span>Chat</span>
+                                        <span>  Chat</span>
                                         </form>
                                     </td>
                                 </tr>
