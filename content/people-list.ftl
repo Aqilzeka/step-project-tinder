@@ -15,6 +15,37 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 12px 28px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+
+        .button2 {
+            background-color: white;
+            color: black;
+            border: 2px solid #008CBA;
+            border-radius: 10px;
+            margin-left: 620px;
+        }
+
+        .button2:hover {
+            background-color: #008CBA;
+            color: white;
+        }
+
+    </style>
 </head>
 <body style="overflow-x: auto">
 <div class="container">
@@ -58,7 +89,13 @@
                                 </tr>
                             </#foreach>
                             </tbody>
+
                         </table>
+                        <div>
+                            <form method="post" action="/logOut">
+                                <button class="button button2">Log Out</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

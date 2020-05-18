@@ -36,10 +36,12 @@ public class LoginServlet extends HttpServlet {
                     }
                 }
             }
-            Path path = Paths.get("./content/login.html");
-            ServletOutputStream outputStream = resp.getOutputStream();
-            Files.copy(path, outputStream);
-        } else resp.sendRedirect("/like");
+
+        }
+
+        Path path = Paths.get("./content/login.html");
+        ServletOutputStream outputStream = resp.getOutputStream();
+        Files.copy(path, outputStream);
     }
 
     @Override
