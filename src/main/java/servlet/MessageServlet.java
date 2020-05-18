@@ -38,7 +38,6 @@ public class MessageServlet extends HttpServlet {
         List<String> formattedMessages = service.getFormattedMessages(senderId,receiverId);
         HashMap<String,Object> data = new HashMap<>();
         data.put("userTo",user.getName());
-        data.put("id",replace);
         if (!formattedMessages.isEmpty())
             data.put("messages",formattedMessages);
         else
