@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/favicon.ico">
+
 
     <title>Chat</title>
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/font.css">
+
+    <link rel="stylesheet" href="/content/css/font.css">
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
+
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -27,7 +32,9 @@
                 <div class="row header-one text-white p-1">
                     <div class="col-md-6 name pl-2">
                         <i class="fa fa-comment"></i>
-                        <h6 class="ml-1 mb-0">${userTo}</h6>
+                        <h6 class="ml-1 mb-0">
+                            ${userTo}
+                        </h6>
                     </div>
                     <div class="col-md-6 options text-right pr-0">
                         <i class="fa fa-window-minimize hide-chat-box hover text-center pt-1"></i>
@@ -49,8 +56,9 @@
             </div>
             <div class="chat-content">
                 <div class="col-md-12 chats pt-3 pl-2 pr-3 pb-3">
-                    <ul class="p-0">
+                    <ul>
                         <#list messages as message>
+
                             ${message}
                         </#list>
                     </ul>
@@ -61,11 +69,13 @@
                             <i class="fa fa-smile-o"></i>
                         </div>
                         <div class="col-md-7 pl-0">
-                            <label>
-                                <input type="text" style="visibility: visible" name="message" class="border-0"
-                                       placeholder="Send message">
-                            </label>
-                            <button type="submit" name="send"><span>Send</span></button>
+                            <form method="post" >
+                                <label>
+                                    <input type="text" style="visibility: visible" name="message" class="border-0"
+                                           placeholder="Send message">
+                                </label>
+                                <button type="submit" name="send"><span>Send</span></button>
+                            </form>
                         </div>
                         <div class="col-md-3 text-right options-right">
                             <i class="fa fa-picture-o mr-2"></i>

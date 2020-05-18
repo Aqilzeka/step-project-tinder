@@ -16,9 +16,14 @@ TinderApp {
         MessageService messageService = new MessageService();
 
 
-        handler.addServlet(new ServletHolder(new StaticServlet("bootstrap")),"/bootstrap/0");
+        handler.addServlet(new ServletHolder(new StaticServlet("bootstrap")),"/bootstrap/*");
         handler.addServlet(new ServletHolder(new StaticServlet("css")),"/css/*");
-        handler.addServlet(new ServletHolder(new RegisterServlet()), "/*");
+        handler.addServlet(new ServletHolder(new StaticServlet("style")),"/style/*");
+        handler.addServlet(new ServletHolder(new StaticServlet("abc")),"/abc/*");
+
+
+
+        handler.addServlet(new ServletHolder(new RegisterServlet()), "/register/*");
         handler.addServlet(new ServletHolder(new LoginServlet(loginService)), "/login/*");
         handler.addServlet(new ServletHolder(new MyProfileServlet()), "/myProfile/*");
         handler.addServlet(new ServletHolder(new LikeServlet(likeService)), "/like/*");

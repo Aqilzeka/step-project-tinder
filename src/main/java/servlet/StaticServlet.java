@@ -24,7 +24,7 @@ public class StaticServlet extends HttpServlet {
         String filename = req.getPathInfo();
         String osFileLocation = "content";
 
-        Path path = Paths.get(osFileLocation, subPath,filename);
+        Path path = Paths.get(osFileLocation, subPath, filename);
 
         try(OutputStream os = resp.getOutputStream()){
             Files.copy(path,os);

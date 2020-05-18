@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="img/favicon.ico">
+<#--    <link rel="icon" href="img/favicon.ico">-->
 
     <title>People list</title>
-<#--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="css/font.css">
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/style.css">
@@ -48,8 +48,10 @@
                                     </td>
 
                                     <td  class="align-middle">
-                                        <form method="get" action="/messages/${people.id}">
-                                              <button type="submit" class="btn btn-outline-success btn-block"></button>
+                                        <form method="get" action="/messages" >
+
+                                              <button type="submit" class="btn btn-outline-success btn-block" name="id"
+                                                      value="${people.id}"></button>
                                         <span>  Chat</span>
                                         </form>
                                     </td>

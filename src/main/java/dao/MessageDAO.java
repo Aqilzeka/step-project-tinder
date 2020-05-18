@@ -15,10 +15,10 @@ import java.util.stream.Stream;
 
 public class MessageDAO implements DAO<Message> {
 
-    private static final String MESSAGES = "SELECT * FROM message;";
-    private static final String DELETE  = "DELETE FROM message;";
-    private static final String INSERT  = "INSERT INTO message " +
-            "(user_from, user_to, message, localId, datetime) values (?,?,?,?,?);";
+    private static final String MESSAGES = "SELECT * FROM \"messages\";";
+    private static final String DELETE = "DELETE FROM \"messages\";";
+    private static final String INSERT = "INSERT INTO \"messages\" " +
+            "(user_to, user_from, local_id, my_message, date_time) values (?,?,?,?,?);";
 
 
     private List<Message> messages;
@@ -63,7 +63,6 @@ public class MessageDAO implements DAO<Message> {
     public void read() {
         messages = new LinkedList<>();
         try {
-
             Connection connection = DBConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(MESSAGES);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -73,9 +72,9 @@ public class MessageDAO implements DAO<Message> {
                                 resultSet.getInt("id"),
                                 resultSet.getInt("user_to"),
                                 resultSet.getInt("user_from"),
-                                resultSet.getInt("localId"),
-                                resultSet.getString("message"),
-                                resultSet.getString("dateTime")
+                                resultSet.getInt("local_id"),
+                                resultSet.getString("my_message"),
+                                resultSet.getString("date_time")
                         )
                 );
             }
@@ -103,10 +102,17 @@ public class MessageDAO implements DAO<Message> {
 
             Connection connection = DBConnection.getConnection();
             PreparedStatement insertToMessage = connection.prepareStatement(INSERT);
-            insertToMessage.setInt(1, message.getUserFrom());
-            insertToMessage.setInt(2, message.getUserTo());
-            insertToMessage.setString(3, message.getMessage());
-            insertToMessage.setInt(4, message.getLocalId());
+            System.out.println("getUserFrom  " + message.getUserFrom());
+            System.out.println("getUserTo  " + message.getUserTo());
+            System.out.println("getId  " + message.getId());
+            System.out.println("getDateTime  " + message.getDateTime());
+            System.out.println("getLocalId  " + message.getLocalId());
+            System.out.println("getMessage  " + message.getMessage());
+
+            insertToMessage.setInt(1,message.getUserTo());
+            insertToMessage.setInt(2, message.getUserFrom());
+            insertToMessage.setInt(3,message.getLocalId());
+            insertToMessage.setString(4, message.getMessage());
             insertToMessage.setString(5, message.getDateTime());
             insertToMessage.executeUpdate();
             messages.add(message);
@@ -119,4 +125,5 @@ public class MessageDAO implements DAO<Message> {
     public Iterator<Message> iterator() {
         return messages.iterator();
     }
+
 }

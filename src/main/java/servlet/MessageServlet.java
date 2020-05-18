@@ -29,7 +29,7 @@ public class MessageServlet extends HttpServlet {
         for (Cookie cookie: cookies)
             if (cookie.getName().equals("%ID%"))
                 senderId = Integer.parseInt(cookie.getValue());
-        final String replace = req.getPathInfo().replace("/","");
+        final String replace = req.getParameter("id");
         System.out.println(replace);
         receiverId = Integer.parseInt(replace);
 
@@ -38,6 +38,7 @@ public class MessageServlet extends HttpServlet {
         List<String> formattedMessages = service.getFormattedMessages(senderId,receiverId);
         HashMap<String,Object> data = new HashMap<>();
         data.put("userTo",user.getName());
+        data.put("id",replace);
         if (!formattedMessages.isEmpty())
             data.put("messages",formattedMessages);
         else
@@ -48,7 +49,8 @@ public class MessageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String message = req.getParameter("message");
+
         service.write(senderId, receiverId, message);
-        resp.sendRedirect(String.format("/message/%d", receiverId));
+        resp.sendRedirect(String.format("/messages?id=%d", receiverId));
     }
 }

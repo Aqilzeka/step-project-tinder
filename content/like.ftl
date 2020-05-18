@@ -9,7 +9,7 @@
     <title>Like page</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/style.css">
@@ -23,7 +23,7 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <div class="col-12 col-lg-12 col-md-12 text-center">
+                <div class="col-12 col-lg-12 col-md-12 text-center" style="width: border-box 500px">
                     <img src=${imgURL} alt="" height="250" width="250" class="mx-auto rounded-circle img-fluid">
                     <h3 class="mb-0 text-truncated">${name} <br> ${title}</h3>
                     <br>

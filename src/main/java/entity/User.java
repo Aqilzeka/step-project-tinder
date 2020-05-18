@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class User {
 

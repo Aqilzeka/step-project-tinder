@@ -23,10 +23,10 @@ public class MessageService {
     private int getLastLocalId(int sender, int receiver) {
         return messages.stream()
                 .filter(message -> (
-                                message.getUserFrom() == sender &&
-                                message.getUserTo() == receiver ||
-                                message.getUserFrom() == receiver &&
-                                message.getUserTo() == sender
+                                (message.getUserFrom() == sender   &&
+                                message.getUserTo() == receiver)   ||
+                                (message.getUserFrom() == receiver &&
+                                message.getUserTo() == sender)
                 ))
                 .map(Message::getLocalId)
                 .max(Integer::compareTo)
@@ -57,6 +57,7 @@ public class MessageService {
     public void write(int sender, int receiver, String message){
         if (!message.isEmpty()){
             int lastLocalId = getLastLocalId(sender,receiver);
+            System.out.println(lastLocalId);
             messages.add(new Message(receiver,sender,lastLocalId + 1,message,
                     LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm MM-dd-yyyy"))));
         }
