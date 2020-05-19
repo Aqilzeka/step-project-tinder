@@ -10,7 +10,6 @@ public interface DbSetup {
     }
 
     static void migrate(String path, String user, String password, boolean clean){
-
         FluentConfiguration configuration = new FluentConfiguration()
                 .dataSource(path,user,password);
         Flyway flyway =new Flyway(configuration);

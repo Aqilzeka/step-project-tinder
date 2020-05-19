@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.tinder.project</groupId>
+    <groupId>org</groupId>
     <artifactId>step-project-tinder</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -12,7 +12,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
 
     <build>
         <plugins>
@@ -32,8 +31,10 @@
                 <executions>
                     <execution>
                         <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals><goal>copy-dependencies</goal></goals>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
                         <configuration>
                             <outputDirectory>
                                 ${project.build.directory}/deps
@@ -44,8 +45,6 @@
             </plugin>
         </plugins>
     </build>
-
-
 
     <dependencies>
             <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
@@ -84,7 +83,6 @@
                 <artifactId>postgresql</artifactId>
                 <version>42.2.8</version>
             </dependency>
-
             <!--        Jersey glass fish -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -94,10 +92,10 @@
             </dependency>
 
             <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>6.4.2</version>
-        </dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>6.4.2</version>
+            </dependency>
     </dependencies>
 
 </project>
