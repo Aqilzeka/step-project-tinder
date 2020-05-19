@@ -27,13 +27,10 @@ public class TinderApp {
         LikedService likedService = new LikedService();
         MessageService messageService = new MessageService();
 
-
         handler.addServlet(new ServletHolder(new StaticServlet("bootstrap")),"/bootstrap/*");
         handler.addServlet(new ServletHolder(new StaticServlet("css")),"/css/*");
         handler.addServlet(new ServletHolder(new StaticServlet("style")),"/style/*");
         handler.addServlet(new ServletHolder(new StaticServlet("abc")),"/abc/*");
-
-
 
         handler.addServlet(new ServletHolder(new RegisterServlet()), "/register/*");
         handler.addServlet(new ServletHolder(new LoginServlet(loginService)), "/login/*");
