@@ -80,7 +80,6 @@
 
                                     <td  class="align-middle">
                                         <form method="get" action="/messages" >
-
                                               <button type="submit" class="btn btn-outline-success btn-block" name="id"
                                                       value="${people.id}"></button>
                                         <span>  Chat</span>
