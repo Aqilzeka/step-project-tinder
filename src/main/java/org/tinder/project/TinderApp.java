@@ -10,6 +10,13 @@ import org.tinder.project.service.LoginService;
 import org.tinder.project.service.MessageService;
 import org.tinder.project.servlet.*;
 
+
+/**
+ *
+ * http://localhost:5000/login
+ *
+ * */
+
 public class TinderApp {
     public static void main(String[] args) throws Exception {
         Server server = new Server(HerokuEnv.port());
