@@ -1,2 +1,4 @@
 # Project exclude paths
+/.idea/
 /target/
+/step-project-tinder.iml
