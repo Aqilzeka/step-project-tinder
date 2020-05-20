@@ -3,6 +3,7 @@ package org.tinder.project.entity;
 import lombok.*;
 
 @Getter
+@Setter
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor

@@ -37,6 +37,9 @@ public class MyProfileServlet extends HttpServlet {
         System.out.println(gender);
         System.out.println(title);
         System.out.println(photo);
+        User user = new User();
+        System.out.println(user.getEmail());
+        System.out.println(user.getName());
         myProfileService.add(new User(name, gender, title, photo));
         resp.sendRedirect("/login");
     }
