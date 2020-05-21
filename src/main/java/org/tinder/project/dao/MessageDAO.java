@@ -1,5 +1,6 @@
 package org.tinder.project.dao;
 
+import lombok.extern.log4j.Log4j2;
 import org.tinder.project.entity.Message;
 
 import java.sql.Connection;
@@ -13,10 +14,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Log4j2
 public class MessageDAO implements DAO<Message> {
 
     private static final String MESSAGES = "SELECT * FROM \"messages\";";
-    private static final String DELETE = "DELETE FROM \"messages\";";
     private static final String INSERT = "INSERT INTO \"messages\" " +
             "(user_to, user_from, local_id, my_message, date_time) values (?,?,?,?,?);";
 
@@ -46,10 +47,6 @@ public class MessageDAO implements DAO<Message> {
         return messages.stream();
     }
 
-    @Override
-    public Integer size() {
-        return messages.size();
-    }
 
     @Override
     public Message get(int id) {
@@ -80,21 +77,10 @@ public class MessageDAO implements DAO<Message> {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Can't read messages", e);
+            log.error("Can't read messages", e);
         }
     }
 
-    @Override
-    public void clear() {
-        try {
-            Connection connection = DBConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
-            preparedStatement.executeUpdate();
-            messages = new LinkedList<>();
-        } catch (SQLException e) {
-            throw new RuntimeException("Can't deleted from message", e);
-        }
-    }
 
     @Override
     public void add(Message message) {
@@ -117,7 +103,7 @@ public class MessageDAO implements DAO<Message> {
             insertToMessage.executeUpdate();
             messages.add(message);
         } catch (SQLException e) {
-            throw new RuntimeException("Can't added to message", e);
+            log.error("Can't added to message", e);
         }
     }
 

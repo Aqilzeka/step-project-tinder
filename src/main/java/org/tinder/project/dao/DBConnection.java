@@ -1,9 +1,12 @@
 package org.tinder.project.dao;
 
+import lombok.extern.log4j.Log4j2;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+@Log4j2
 public class DBConnection {
     private final static String URL = "jdbc:postgresql://ec2-54-246-85-151.eu-west-1.compute.amazonaws.com:5432/d36isdpvdr1253";
     private final static String NAME = "mgfwnnvgwivxck";
@@ -19,7 +22,7 @@ public class DBConnection {
             try {
                 connection = DriverManager.getConnection(URL,NAME,PASSWORD);
             } catch (SQLException e) {
-                throw new RuntimeException("Can't connected to database");
+                log.error("Can't connected to database");
             }
         }
         return connection;

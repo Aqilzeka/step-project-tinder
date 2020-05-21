@@ -29,13 +29,12 @@ public class MessageServlet extends HttpServlet {
         for (Cookie cookie: cookies)
             if (cookie.getName().equals("%ID%"))
                 senderId = Integer.parseInt(cookie.getValue());
-        final String replace = req.getParameter("id");
-        System.out.println(replace);
-        receiverId = Integer.parseInt(replace);
+        final String receiverId = req.getParameter("id");
+        this.receiverId = Integer.parseInt(receiverId);
 
         TemplateEngine engine = new TemplateEngine("./content");
-        User user = service.getUser(receiverId);
-        List<String> formattedMessages = service.getFormattedMessages(senderId,receiverId);
+        User user = service.getUser(this.receiverId);
+        List<String> formattedMessages = service.getFormattedMessages(senderId, this.receiverId);
         HashMap<String,Object> data = new HashMap<>();
         data.put("userTo",user.getName());
         if (!formattedMessages.isEmpty())

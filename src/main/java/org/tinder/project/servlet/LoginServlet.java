@@ -1,5 +1,6 @@
 package org.tinder.project.servlet;
 
+import lombok.extern.log4j.Log4j2;
 import org.tinder.project.entity.User;
 import org.tinder.project.service.LoginService;
 
@@ -14,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+@Log4j2
 public class LoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1;
@@ -54,6 +56,7 @@ public class LoginServlet extends HttpServlet {
             resp.addCookie(new Cookie("%ID%", String.valueOf(id)));
             resp.sendRedirect("/like");
         } catch (Exception e) {
+            log.warn("Yor password or email isn't correct");
             resp.sendRedirect("/login");
         }
     }

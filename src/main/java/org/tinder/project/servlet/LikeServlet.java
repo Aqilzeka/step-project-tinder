@@ -1,5 +1,6 @@
 package org.tinder.project.servlet;
 
+import lombok.extern.log4j.Log4j2;
 import org.tinder.project.entity.User;
 import org.tinder.project.service.LikeService;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 
+@Log4j2
 public class LikeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1;
@@ -35,6 +37,7 @@ public class LikeServlet extends HttpServlet {
             if (user.getId() == service.getLocalId())
                 user = service.getNext(user.getId());
         } catch (Exception e){
+            log.info("All users liked");
             resp.sendRedirect("/liked");
         }
 
@@ -56,6 +59,7 @@ public class LikeServlet extends HttpServlet {
             user = service.getNext(user.getId());
             resp.sendRedirect("/like");
         } catch (Exception e){
+            log.info("All users liked");
             resp.sendRedirect("/liked");
         }
     }

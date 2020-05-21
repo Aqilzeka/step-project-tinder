@@ -1,5 +1,6 @@
 package org.tinder.project.dao;
 
+import lombok.extern.log4j.Log4j2;
 import org.tinder.project.entity.User;
 
 import java.sql.*;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 // `HelloWorld1
+@Log4j2
 public class UserDAO implements DAO<User> {
 
     private List<User> users;
@@ -19,13 +21,10 @@ public class UserDAO implements DAO<User> {
     }
 
 
-    public static final String USERS = "SELECT * FROM users;";
-    public static final String DELETE = "DELETE FROM users";
-
-
+    public static final String USERS =
+            "SELECT * FROM users;";
     public static final String INSERT_EMAIL_PSW =
             "INSERT INTO users(email, password) values(?,?);";
-
     public static final String INSERT_NAME_GENDER_TITLE_PHOTO =
             "UPDATE users SET name = ?, gender = ?, title = ?, photo = ? WHERE id = (select max(id) from users);";
 
@@ -49,23 +48,10 @@ public class UserDAO implements DAO<User> {
                 ));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Didn't read " + e);
         }
     }
 
-    @Override
-    public void clear() {
-
-        try{
-            Connection connection = DBConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
-            preparedStatement.executeUpdate();
-            users = new LinkedList<>();
-        } catch (SQLException e) {
-            throw new RuntimeException("Can't deleted from user", e);
-        }
-
-    }
 
     public void insertEmailAndPwd(User user) {
         try {
@@ -78,7 +64,7 @@ public class UserDAO implements DAO<User> {
             System.out.println(insertUser);
             insertUser.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Can't added to users", e);
+            log.error("Can't added to users", e);
         }
     }
     @Override
@@ -96,7 +82,7 @@ public class UserDAO implements DAO<User> {
             users.add(user);
 
         } catch (SQLException e) {
-            throw new RuntimeException("Can't added to users", e);
+            log.error("Can't added to users", e);
         }
     }
 
@@ -116,11 +102,6 @@ public class UserDAO implements DAO<User> {
     @Override
     public Stream<User> stream() {
         return users.stream();
-    }
-
-    @Override
-    public Integer size() {
-        return users.size();
     }
 
     @Override

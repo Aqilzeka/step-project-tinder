@@ -1,5 +1,6 @@
 package org.tinder.project.dao;
 
+import lombok.extern.log4j.Log4j2;
 import org.tinder.project.entity.Like;
 
 import java.sql.Connection;
@@ -12,11 +13,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Log4j2
 public class LikeDAO implements DAO<Like> {
 
 
     private static final String LIKES = "SELECT * FROM likes;";
-    private static final String DELETE = "DELETE FROM likes;";
     private static final String INSERT = "INSERT INTO likes " +
             "(user_from, user_to) values (?,?)";
 
@@ -49,11 +50,6 @@ public class LikeDAO implements DAO<Like> {
     }
 
     @Override
-    public Integer size() {
-        return likes.size();
-    }
-
-    @Override
     public Like get(int id) {
         return
                  stream()
@@ -77,24 +73,11 @@ public class LikeDAO implements DAO<Like> {
                 );
             }
         } catch (SQLException e){
-            e.printStackTrace();
-            //throw new RuntimeException("Can't read likes", e);
+            log.error("Can't read likes", e);
         }
 
     }
 
-    @Override
-    public void clear() {
-        try{
-            Connection connection = DBConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
-            preparedStatement.executeUpdate();
-            likes = new LinkedList<>();
-        } catch (SQLException e){
-            throw new RuntimeException("Can't deleted from likes");
-        }
-
-    }
 
     @Override
     public void add(Like like) {
@@ -106,7 +89,7 @@ public class LikeDAO implements DAO<Like> {
             insertLikes.executeUpdate();
             likes.add(like);
         }catch (SQLException e){
-            throw new RuntimeException("Can't inserted to likes", e);
+            log.error("Can't inserted to likes", e);
         }
     }
 

@@ -1,5 +1,6 @@
 package org.tinder.project.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.tinder.project.dao.MessageDAO;
 import org.tinder.project.dao.UserDAO;
 import org.tinder.project.entity.Message;
@@ -11,6 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Log4j2
 public class MessageService {
     protected MessageDAO messages;
     protected UserDAO users;
@@ -57,7 +59,7 @@ public class MessageService {
     public void write(int sender, int receiver, String message){
         if (!message.isEmpty()){
             int lastLocalId = getLastLocalId(sender,receiver);
-            System.out.println(lastLocalId);
+            log.info(lastLocalId);
             messages.add(new Message(receiver,sender,lastLocalId + 1,message,
                     LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm MM-dd-yyyy"))));
         }

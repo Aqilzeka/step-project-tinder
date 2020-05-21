@@ -1,5 +1,6 @@
 package org.tinder.project.servlet;
 
+import lombok.extern.log4j.Log4j2;
 import org.tinder.project.entity.User;
 import org.tinder.project.service.RegisterService;
 
@@ -12,7 +13,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
+@Log4j2
 public class RegisterServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1;
@@ -33,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         registerService.register(new User(email,password));
-
+        log.info("Registered");
         resp.sendRedirect("/myProfile");
     }
 

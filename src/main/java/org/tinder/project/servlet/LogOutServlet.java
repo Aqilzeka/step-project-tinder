@@ -1,5 +1,7 @@
 package org.tinder.project.servlet;
 
+import lombok.extern.log4j.Log4j2;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Log4j2
 public class LogOutServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1;
@@ -22,11 +25,9 @@ public class LogOutServlet extends HttpServlet {
                     cookie.setMaxAge(0);
                     resp.addCookie(cookie);
                 }
-                System.out.println(cookie.getName());
-                System.out.println(cookie.getValue());
             }
         }
-
+        log.info("Log outed");
         resp.sendRedirect("/login");
     }
 

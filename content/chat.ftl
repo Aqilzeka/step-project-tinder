@@ -45,11 +45,24 @@
             color: black;
             border: 2px solid #008CBA;
             border-radius: 10px;
-            margin-left: 720px;
+            margin-left: 315px;
         }
 
         .button2:hover {
             background-color: #008CBA;
+            color: white;
+        }
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #008CBA;
+            border-radius: 10px;
+            margin-left: 15px;
+        }
+
+        .button1:hover {
+            background-color: #2fbf0f;
             color: white;
         }
 
@@ -114,14 +127,17 @@
                             <i class="fa fa-picture-o mr-2"></i>
                         </div>
                     </div>
+                </div >
+                <div class="row">
+                    <form action="/liked">
+                        <button class="button button1">Liked List</button>
+                    </form>
+                    <form method="post" action="/logOut">
+                        <button class="button button2">Log Out</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-    <div >
-        <form method="post" action="/logOut">
-            <button class="button button2">Log Out</button>
-        </form>
     </div>
 </div>
 
