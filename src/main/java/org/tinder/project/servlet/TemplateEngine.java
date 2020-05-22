@@ -25,10 +25,6 @@ public class TemplateEngine {
       }};
   }
 
-  public static TemplateEngine folder(String root_location) throws IOException {
-    return new TemplateEngine(root_location);
-  }
-
   public void render(String templateFile, HashMap<String, Object> data, HttpServletResponse resp) {
     resp.setCharacterEncoding(String.valueOf(StandardCharsets.UTF_8));
     try (PrintWriter w = resp.getWriter()) {

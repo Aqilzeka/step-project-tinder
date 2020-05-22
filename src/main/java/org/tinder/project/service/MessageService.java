@@ -68,10 +68,10 @@ public class MessageService {
     public List<Message> getMessage(int sender, int receiver){
         return messages.stream()
                 .filter(message -> ((
-                                message.getUserFrom() == sender &&
-                                message.getUserTo() == receiver) || (
-                                message.getUserFrom() == receiver &&
-                                message.getUserTo() == sender  )))
+                                message.getUserFrom() == sender    &&
+                                message.getUserTo()   == receiver) ||
+                                message.getUserFrom() == receiver  &&
+                                message.getUserTo()   == sender  ))
                 .sorted(Comparator.comparingInt(Message::getLocalId))
                 .collect(Collectors.toList());
     }

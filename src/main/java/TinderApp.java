@@ -2,7 +2,6 @@ import org.tinder.project.heroku.HerokuEnv;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.tinder.project.migrations.DbSetup;
 import org.tinder.project.service.LikeService;
 import org.tinder.project.service.LikedService;
 import org.tinder.project.service.LoginService;
