@@ -23,7 +23,6 @@ public class TinderApp {
         Server server = new Server(HerokuEnv.port());
         ServletContextHandler handler = new ServletContextHandler();
 
-
 //        LoginService loginService = new LoginService();
 //        LikeService likeService = new LikeService();
 //        LikedService likedService = new LikedService();
