@@ -12,7 +12,7 @@ import java.io.IOException;
 @Log4j2
 public class LogOutServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 1L;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

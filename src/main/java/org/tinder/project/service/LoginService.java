@@ -15,6 +15,7 @@ public class LoginService {
 
     public int check(User user){
         users.read();
+        users.getAllId();
         for (User u: users){
             if (u.checkEqual(user)){
                 isLogged = true;

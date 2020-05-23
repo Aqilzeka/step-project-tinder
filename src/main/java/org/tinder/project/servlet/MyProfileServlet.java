@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 
 public class MyProfileServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 1L;
     private final MyProfileService myProfileService = new MyProfileService();
 
     @Override

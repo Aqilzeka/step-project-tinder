@@ -26,7 +26,10 @@ public class LikeService {
         likes = new LikeDAO();
         users = new UserDAO();
         userIds = users.getAllId();
+        System.out.println("Insde LIKes service ");
     }
+
+
 
     public void like(int user_to) {
         liked = true;
@@ -58,7 +61,6 @@ public class LikeService {
 
     public User getNext(int user_to) throws IndexOutOfBoundsException {
         userIds.remove(Integer.valueOf(user_to));
-
         if (!isLast()) return users.get(userIds.get(0));
         else if (isLiked()) throw new IndexOutOfBoundsException();
         else userIds = users.getAllId();

@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 @Log4j2
 public class RegisterServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 1L;
     private final RegisterService registerService = new RegisterService();
 
     @Override

@@ -15,13 +15,14 @@ import java.util.HashMap;
 @Log4j2
 public class LikeServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 1L;
     private final LikeService service = new LikeService();
     private User user;
 
 
     public LikeServlet() {
         user = service.getFirst();
+        System.out.println("Inside LikeServlet()");
     }
 
 
@@ -33,8 +34,15 @@ public class LikeServlet extends HttpServlet {
             if (cookie.getName().equals("%ID%"))
                 service.setLocalId(Integer.parseInt(cookie.getValue()));
 
-        if (user.getId() == service.getLocalId())
-            user = service.getNext(user.getId());
+            try {
+                if (user.getId() == service.getLocalId())
+                    user = service.getNext(user.getId());
+            } catch (Exception e){
+                user = service.getFirst();
+                log.info("All users liked");
+                resp.sendRedirect("/liked");
+            }
+
 
 
         TemplateEngine engine = new TemplateEngine("./content");
@@ -55,6 +63,7 @@ public class LikeServlet extends HttpServlet {
             user = service.getNext(user.getId());
             resp.sendRedirect("/like");
         } catch (Exception e){
+            user = service.getFirst();
             log.info("All users liked");
             resp.sendRedirect("/liked");
         }

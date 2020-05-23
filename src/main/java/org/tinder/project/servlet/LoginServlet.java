@@ -18,7 +18,7 @@ import java.nio.file.Paths;
 @Log4j2
 public class LoginServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 1L;
     private final LoginService loginService = new LoginService();
 
     @Override
@@ -49,6 +49,8 @@ public class LoginServlet extends HttpServlet {
         try {
             int id = loginService.check(new User(email, password));
             resp.addCookie(new Cookie("%ID%", String.valueOf(id)));
+            LikeServlet likeServlet = new LikeServlet();
+            likeServlet.doGet(req,resp);
             resp.sendRedirect("/like");
         } catch (Exception e) {
             log.warn("Yor password or email isn't correct");
