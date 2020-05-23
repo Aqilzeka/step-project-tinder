@@ -20,10 +20,6 @@ public class LoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1;
     private final LoginService loginService = new LoginService();
-    private final LikeServlet likeServlet = new LikeServlet();
-
-
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,7 +49,6 @@ public class LoginServlet extends HttpServlet {
         try {
             int id = loginService.check(new User(email, password));
             resp.addCookie(new Cookie("%ID%", String.valueOf(id)));
-             likeServlet.getFirst();
             resp.sendRedirect("/like");
         } catch (Exception e) {
             log.warn("Yor password or email isn't correct");
