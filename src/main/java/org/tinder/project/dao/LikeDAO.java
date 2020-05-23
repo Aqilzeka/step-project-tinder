@@ -1,6 +1,7 @@
 package org.tinder.project.dao;
 
 import lombok.extern.log4j.Log4j2;
+import org.tinder.project.db.DBConnection;
 import org.tinder.project.entity.Like;
 
 import java.sql.Connection;
@@ -30,14 +31,7 @@ public class LikeDAO implements DAO<Like> {
         read();
     }
 
-    @Override
-    public List<Integer> getAllId() {
-        return
-                 likes
-                .stream()
-                .map(Like::getId)
-                .collect(Collectors.toCollection(LinkedList::new));
-    }
+
 
     @Override
     public List<Like> getDatabase() {
@@ -78,6 +72,23 @@ public class LikeDAO implements DAO<Like> {
 
     }
 
+    @Override
+    public List<Integer> getAllId() {
+        List<Integer> result = new LinkedList<>();
+
+        try {
+            Connection connection = DBConnection.getConnection();
+            PreparedStatement getIds = connection.prepareStatement(LIKES);
+            ResultSet resultSet = getIds.executeQuery();
+            while (resultSet.next()){
+                result.add(resultSet.getInt("id"));
+            }
+        }  catch (SQLException e) {
+            log.error("Didn't read " + e);
+        }
+        return result;
+    }
+
 
     @Override
     public void add(Like like) {
@@ -87,7 +98,7 @@ public class LikeDAO implements DAO<Like> {
             insertLikes.setInt(1,like.getUser_from());
             insertLikes.setInt(2,like.getUser_to());
             insertLikes.executeUpdate();
-            likes.add(like);
+           // likes.add(like);
         }catch (SQLException e){
             log.error("Can't inserted to likes", e);
         }

@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://ec2-54-246-85-151.eu-west-1.compute.amazonaws.com:5432/d36isdpvdr1253</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="tinderm" uuid="c641d12e-f781-4865-97cb-3f6f242142ac">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://ec2-34-232-147-86.compute-1.amazonaws.com:5432/d79pqhfsbv3cgk</jdbc-url>
+    </data-source>
   </component>
 </project>

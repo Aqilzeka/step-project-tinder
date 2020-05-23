@@ -25,10 +25,11 @@ public class TinderApp {
         Server server = new Server(HerokuEnv.port());
         ServletContextHandler handler = new ServletContextHandler();
 
-        LoginService loginService = new LoginService();
-        LikeService likeService = new LikeService();
-        LikedService likedService = new LikedService();
-        MessageService messageService = new MessageService();
+
+//        LoginService loginService = new LoginService();
+//        LikeService likeService = new LikeService();
+//        LikedService likedService = new LikedService();
+//        MessageService messageService = new MessageService();
 
         handler.addServlet(new ServletHolder(new StaticServlet("bootstrap")),"/bootstrap/*");
         handler.addServlet(new ServletHolder(new StaticServlet("css")),"/css/*");
@@ -36,11 +37,11 @@ public class TinderApp {
         handler.addServlet(new ServletHolder(new StaticServlet("abc")),"/abc/*");
 
         handler.addServlet(new ServletHolder(new RegisterServlet()), "/register/*");
-        handler.addServlet(new ServletHolder(new LoginServlet(loginService)), "/login/*");
+        handler.addServlet(new ServletHolder(new LoginServlet()), "/login/*");
         handler.addServlet(new ServletHolder(new MyProfileServlet()), "/myProfile/*");
-        handler.addServlet(new ServletHolder(new LikeServlet(likeService)), "/like/*");
-        handler.addServlet(new ServletHolder(new MessageServlet(messageService)),"/messages/*");
-        handler.addServlet(new ServletHolder(new LikedServlet(likedService)),"/liked/*");
+        handler.addServlet(new ServletHolder(new LikeServlet()), "/like/*");
+        handler.addServlet(new ServletHolder(new MessageServlet()),"/messages/*");
+        handler.addServlet(new ServletHolder(new LikedServlet()),"/liked/*");
         handler.addServlet(new ServletHolder(new LogOutServlet()),"/logOut");
 
         server.setHandler(handler);

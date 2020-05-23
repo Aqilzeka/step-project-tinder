@@ -16,12 +16,11 @@ import java.util.HashMap;
 public class LikeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1;
-    private final LikeService service;
+    private final LikeService service = new LikeService();
     private User user;
 
 
-    public LikeServlet(LikeService service) {
-        this.service = service;
+    public LikeServlet() {
         user = service.getFirst();
     }
 

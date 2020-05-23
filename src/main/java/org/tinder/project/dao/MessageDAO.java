@@ -1,6 +1,7 @@
 package org.tinder.project.dao;
 
 import lombok.extern.log4j.Log4j2;
+import org.tinder.project.db.DBConnection;
 import org.tinder.project.entity.Message;
 
 import java.sql.Connection;

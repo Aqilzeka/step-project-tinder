@@ -1,4 +1,5 @@
 -- auto-generated definition
+-- auto-generated definition
 create table messages
 (
     id         serial not null
@@ -12,7 +13,7 @@ create table messages
 );
 
 alter table messages
-    owner to mgfwnnvgwivxck;
+    owner to gbygpgpuvrardi;
 
 create unique index messages_id_uindex
     on messages (id);

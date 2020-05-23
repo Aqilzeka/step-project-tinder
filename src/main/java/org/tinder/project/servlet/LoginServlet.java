@@ -19,11 +19,10 @@ import java.nio.file.Paths;
 public class LoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1;
-    private final LoginService loginService;
+    private final LoginService loginService = new LoginService();
+    private final LikeServlet likeServlet = new LikeServlet();
 
-    public LoginServlet(LoginService loginService) {
-        this.loginService = loginService;
-    }
+
 
 
     @Override
@@ -54,6 +53,7 @@ public class LoginServlet extends HttpServlet {
         try {
             int id = loginService.check(new User(email, password));
             resp.addCookie(new Cookie("%ID%", String.valueOf(id)));
+             likeServlet.getFirst();
             resp.sendRedirect("/like");
         } catch (Exception e) {
             log.warn("Yor password or email isn't correct");

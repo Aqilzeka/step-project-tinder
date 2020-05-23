@@ -35,12 +35,15 @@ public class LikeService {
     }
 
     public User getFirst() {
-        return getUserNotMe()
+        final User user = getUserNotMe()
                 .collect(Collectors.toList())
                 .get(0);
+        System.out.println(" ---->  "+user);
+        return user;
     }
 
     private Stream<User> getUserNotMe() {
+        users.forEach(System.out::println);
         return users.stream()
                 .filter(user -> user.getId() != id);
     }

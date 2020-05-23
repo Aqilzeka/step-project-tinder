@@ -1,6 +1,7 @@
 package org.tinder.project.dao;
 
 import lombok.extern.log4j.Log4j2;
+import org.tinder.project.db.DBConnection;
 import org.tinder.project.entity.User;
 
 import java.sql.*;
@@ -52,6 +53,14 @@ public class UserDAO implements DAO<User> {
         }
     }
 
+    @Override
+    public List<Integer> getAllId() {
+        read();
+        List<Integer> result = new LinkedList<>();
+        users.forEach(user -> result.add(user.getId()));
+        return result;
+
+    }
 
     public void insertEmailAndPwd(User user) {
         try {
@@ -86,13 +95,7 @@ public class UserDAO implements DAO<User> {
         }
     }
 
-    @Override
-    public List<Integer> getAllId() {
-        read();
-        List<Integer> result = new LinkedList<>();
-        users.forEach(user -> result.add(user.getId()));
-        return result;
-    }
+
 
     @Override
     public List<User> getDatabase() {

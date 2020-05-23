@@ -16,12 +16,12 @@ import java.util.List;
 public class MessageServlet extends HttpServlet {
     private int senderId;
     private int receiverId;
-    private final MessageService service;
+    private final MessageService service = new MessageService();
 
 
-    public MessageServlet(MessageService service) {
-        this.service = service;
-    }
+//    public MessageServlet(MessageService service) {
+//        this.service = service;
+//    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
