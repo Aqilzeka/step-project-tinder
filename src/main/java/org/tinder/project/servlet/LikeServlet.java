@@ -33,13 +33,10 @@ public class LikeServlet extends HttpServlet {
         for (Cookie cookie : cookies)
             if (cookie.getName().equals("%ID%"))
                 service.setLocalId(Integer.parseInt(cookie.getValue()));
-        try {
-            if (user.getId() == service.getLocalId())
-                user = service.getNext(user.getId());
-        } catch (Exception e){
-            log.info("All users liked");
-            resp.sendRedirect("/liked");
-        }
+
+        if (user.getId() == service.getLocalId())
+            user = service.getNext(user.getId());
+
 
         TemplateEngine engine = new TemplateEngine("./content");
         HashMap<String, Object> data = new HashMap<>();

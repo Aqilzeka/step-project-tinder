@@ -60,6 +60,8 @@ i {  vertical-align: middle; }
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
   box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  overflow-y: scroll;
+  max-height: 900px;
 }
 
 .panel-default {
@@ -105,6 +107,7 @@ i {  vertical-align: middle; }
   list-style: none;
   margin: 0;
   padding: 0;
+
 }
 
 .chat li
@@ -112,6 +115,7 @@ i {  vertical-align: middle; }
   margin-bottom: 10px;
   padding-bottom: 5px;
   border-bottom: 1px dotted #B3A9A9;
+
 }
 
 .chat li.left .chat-body
@@ -134,9 +138,9 @@ i {  vertical-align: middle; }
 .panel .slidedown .glyphicon, .chat .glyphicon
 {
   margin-right: 5px;
+  overflow-x: scroll;
+  max-height: 500px;
 }
-
-
 
 ::-webkit-scrollbar-track
 {
@@ -155,8 +159,6 @@ i {  vertical-align: middle; }
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
   background-color: #555;
 }
-
-
 
 .mytext{
   border:0;padding:10px;background:whitesmoke;
@@ -297,8 +299,7 @@ input:focus{
 }
 .chats{
 
-  overflow-x: scroll;
-  overflow-x: hidden;
+  overflow-y: scroll;
   background: #ECEFF1;
   position: relative;
   top: 35px;
@@ -369,4 +370,8 @@ input:focus{
   outline: none;
 }
 
-
+.chat-content{
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 800px;
+}

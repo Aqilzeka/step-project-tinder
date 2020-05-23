@@ -45,7 +45,7 @@
             color: black;
             border: 2px solid #008CBA;
             border-radius: 10px;
-            margin-left: 315px;
+            margin-left: 300px;
         }
 
         .button2:hover {
