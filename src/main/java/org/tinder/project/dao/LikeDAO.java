@@ -17,7 +17,6 @@ import java.util.stream.Stream;
 @Log4j2
 public class LikeDAO implements DAO<Like> {
 
-
     private static final String LIKES = "SELECT * FROM likes;";
     private static final String INSERT = "INSERT INTO likes " +
             "(user_from, user_to) values (?,?)";
@@ -41,8 +40,7 @@ public class LikeDAO implements DAO<Like> {
 
     @Override
     public Like get(int id) {
-        return
-                 stream()
+        return stream()
                 .filter(like -> like.getId() == id)
                 .collect(Collectors.toList()).get(0);
     }
@@ -71,19 +69,10 @@ public class LikeDAO implements DAO<Like> {
     @Override
     public List<Integer> getAllId() {
 
-        return likes.stream().map(Like::getId).collect(Collectors.toCollection(LinkedList::new));
-//       List<Integer> result = new LinkedList<>();
-//        try {
-//            Connection connection = DBConnection.getConnection();
-//            PreparedStatement getIds = connection.prepareStatement(LIKES);
-//            ResultSet resultSet = getIds.executeQuery();
-//            while (resultSet.next()){
-//                result.add(resultSet.getInt("id"));
-//            }
-//        }  catch (SQLException e) {
-//            log.error("Didn't read " + e);
-//        }
-//        return result;
+        return likes.stream()
+                .map(Like::getId)
+                .collect(Collectors.toCollection(LinkedList::new));
+
     }
 
 
