@@ -102,7 +102,6 @@ public class LikeDAO implements DAO<Like> {
         }
     }
 
-
     @Override
     public Iterator<Like> iterator() {
         return likes.iterator();
