@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LikedServlet extends HttpServlet {
-    private static final long serialVersionUID = 1;
     protected int localId;
     protected LikedService service = new LikedService();
 
@@ -25,7 +24,6 @@ public class LikedServlet extends HttpServlet {
                 localId = Integer.parseInt(cookie.getValue());
         }
         List<User> likedUsers = service.getLikedUsers(localId);
-        //likedUsers.forEach(System.out::println);
         TemplateEngine engine = new TemplateEngine("./content");
         HashMap<String, Object> data = new HashMap<>();
         data.put("likedPeoples", likedUsers);

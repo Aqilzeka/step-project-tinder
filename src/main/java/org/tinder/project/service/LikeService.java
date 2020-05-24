@@ -26,9 +26,7 @@ public class LikeService {
         likes = new LikeDAO();
         users = new UserDAO();
         userIds = users.getAllId();
-        System.out.println("Insde LIKes service ");
     }
-
 
     public void like(int user_to) {
         liked = true;
@@ -37,15 +35,12 @@ public class LikeService {
     }
 
     public User getFirst() {
-        final User user = getUserNotMe()
+        return getUserNotMe()
                 .collect(Collectors.toList())
                 .get(0);
-        System.out.println(" ---->  "+user);
-        return user;
     }
 
     private Stream<User> getUserNotMe() {
-        users.forEach(System.out::println);
         return users.stream()
                 .filter(user -> user.getId() != id);
     }
@@ -61,9 +56,10 @@ public class LikeService {
     public User getNext(int user_to) throws IndexOutOfBoundsException {
         userIds.remove(Integer.valueOf(user_to));
         if (!isLast()) return users.get(userIds.get(0));
-        userIds = users.getAllId();
-        if (isLiked()) throw new IndexOutOfBoundsException();
-        System.out.println("Under isLiked()  ------> ");
+        if (isLiked()) {
+            userIds = users.getAllId();
+            throw new IndexOutOfBoundsException();
+        }
         return null;
     }
 

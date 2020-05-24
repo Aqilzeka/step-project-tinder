@@ -2,6 +2,7 @@ package org.tinder.project.servlet;
 
 import lombok.extern.log4j.Log4j2;
 import org.tinder.project.entity.User;
+import org.tinder.project.service.LoginService;
 import org.tinder.project.service.RegisterService;
 
 import javax.servlet.ServletException;
@@ -16,7 +17,6 @@ import java.nio.file.Paths;
 @Log4j2
 public class RegisterServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
     private final RegisterService registerService = new RegisterService();
 
     @Override
@@ -32,11 +32,18 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+        User user = new User(email,password);
 
-        registerService.register(new User(email,password));
-        log.info("Registered");
-        resp.sendRedirect("/myProfile");
-    }
+            if (!registerService.check(user)){
+                registerService.register(user);
+                log.info("Registered");
+                resp.sendRedirect("/myProfile");
+            } else {
+            log.warn("This account already used");
+            resp.sendRedirect("/register");
+        }
+        }
+
 
 
 }

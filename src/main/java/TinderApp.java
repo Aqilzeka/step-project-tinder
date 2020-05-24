@@ -2,10 +2,6 @@ import org.tinder.project.heroku.HerokuEnv;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.tinder.project.service.LikeService;
-import org.tinder.project.service.LikedService;
-import org.tinder.project.service.LoginService;
-import org.tinder.project.service.MessageService;
 import org.tinder.project.servlet.*;
 
 
@@ -23,10 +19,6 @@ public class TinderApp {
         Server server = new Server(HerokuEnv.port());
         ServletContextHandler handler = new ServletContextHandler();
 
-//        LoginService loginService = new LoginService();
-//        LikeService likeService = new LikeService();
-//        LikedService likedService = new LikedService();
-//        MessageService messageService = new MessageService();
 
         handler.addServlet(new ServletHolder(new StaticServlet("bootstrap")),"/bootstrap/*");
         handler.addServlet(new ServletHolder(new StaticServlet("css")),"/css/*");

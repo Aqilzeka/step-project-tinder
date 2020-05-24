@@ -59,7 +59,6 @@ public class UserDAO implements DAO<User> {
         List<Integer> result = new LinkedList<>();
         users.forEach(user -> result.add(user.getId()));
         return result;
-
     }
 
     public void insertEmailAndPwd(User user) {
@@ -70,8 +69,8 @@ public class UserDAO implements DAO<User> {
             insertUser.setString(1, user.getEmail());
             insertUser.setString(2, user.getPassword());
 
-            System.out.println(insertUser);
             insertUser.executeUpdate();
+            users.add(user);
         } catch (SQLException e) {
             log.error("Can't added to users", e);
         }
@@ -88,8 +87,6 @@ public class UserDAO implements DAO<User> {
 
             System.out.println(insertUser);
             insertUser.executeUpdate();
-            users.add(user);
-
         } catch (SQLException e) {
             log.error("Can't added to users", e);
         }
@@ -116,4 +113,5 @@ public class UserDAO implements DAO<User> {
     public Iterator<User> iterator() {
         return users.iterator();
     }
+
 }

@@ -20,11 +20,12 @@ public class LoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private final LoginService loginService = new LoginService();
+    private final LikeServlet likeServlet = new LikeServlet();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (!loginService.isLogged()) {
-            Cookie[] cookies = req.getCookies();
+        Cookie[] cookies = req.getCookies();
+        if (!loginService.isLogged() || cookies == null) {
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("%ID%")) {
@@ -33,12 +34,12 @@ public class LoginServlet extends HttpServlet {
                     }
                 }
             }
+            Path path = Paths.get("./content/login.html");
+            ServletOutputStream outputStream = resp.getOutputStream();
+            Files.copy(path, outputStream);
+        } else resp.sendRedirect("/like");
 
-        }
 
-        Path path = Paths.get("./content/login.html");
-        ServletOutputStream outputStream = resp.getOutputStream();
-        Files.copy(path, outputStream);
     }
 
     @Override
@@ -49,9 +50,9 @@ public class LoginServlet extends HttpServlet {
         try {
             int id = loginService.check(new User(email, password));
             resp.addCookie(new Cookie("%ID%", String.valueOf(id)));
+            likeServlet.doGet(req,resp);
             resp.sendRedirect("/like");
         } catch (Exception e) {
-            log.warn("Yor password or email isn't correct");
             resp.sendRedirect("/login");
         }
     }

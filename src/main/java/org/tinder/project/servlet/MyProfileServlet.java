@@ -15,7 +15,6 @@ import java.nio.file.Paths;
 
 public class MyProfileServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
     private final MyProfileService myProfileService = new MyProfileService();
 
     @Override
@@ -33,13 +32,6 @@ public class MyProfileServlet extends HttpServlet {
         String gender = req.getParameter("gender");
         String title = req.getParameter("title");
         String photo = req.getParameter("photo");
-        System.out.println(name);
-        System.out.println(gender);
-        System.out.println(title);
-        System.out.println(photo);
-        User user = new User();
-        System.out.println(user.getEmail());
-        System.out.println(user.getName());
         myProfileService.add(new User(name, gender, title, photo));
         resp.sendRedirect("/login");
     }

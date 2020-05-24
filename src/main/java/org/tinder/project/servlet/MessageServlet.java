@@ -19,10 +19,6 @@ public class MessageServlet extends HttpServlet {
     private final MessageService service = new MessageService();
 
 
-//    public MessageServlet(MessageService service) {
-//        this.service = service;
-//    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();

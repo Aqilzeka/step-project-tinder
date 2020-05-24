@@ -108,6 +108,7 @@ public class MessageDAO implements DAO<Message> {
         }
     }
 
+
     @Override
     public Iterator<Message> iterator() {
         return messages.iterator();

@@ -22,16 +22,12 @@ public class LikeDAO implements DAO<Like> {
     private static final String INSERT = "INSERT INTO likes " +
             "(user_from, user_to) values (?,?)";
 
-
-
     private List<Like> likes;
 
     public LikeDAO() {
-        this.likes = new LinkedList<>();
+        likes = new LinkedList<>();
         read();
     }
-
-
 
     @Override
     public List<Like> getDatabase() {
@@ -74,20 +70,22 @@ public class LikeDAO implements DAO<Like> {
 
     @Override
     public List<Integer> getAllId() {
-        List<Integer> result = new LinkedList<>();
 
-        try {
-            Connection connection = DBConnection.getConnection();
-            PreparedStatement getIds = connection.prepareStatement(LIKES);
-            ResultSet resultSet = getIds.executeQuery();
-            while (resultSet.next()){
-                result.add(resultSet.getInt("id"));
-            }
-        }  catch (SQLException e) {
-            log.error("Didn't read " + e);
-        }
-        return result;
+        return likes.stream().map(Like::getId).collect(Collectors.toCollection(LinkedList::new));
+//       List<Integer> result = new LinkedList<>();
+//        try {
+//            Connection connection = DBConnection.getConnection();
+//            PreparedStatement getIds = connection.prepareStatement(LIKES);
+//            ResultSet resultSet = getIds.executeQuery();
+//            while (resultSet.next()){
+//                result.add(resultSet.getInt("id"));
+//            }
+//        }  catch (SQLException e) {
+//            log.error("Didn't read " + e);
+//        }
+//        return result;
     }
+
 
 
     @Override
@@ -98,11 +96,12 @@ public class LikeDAO implements DAO<Like> {
             insertLikes.setInt(1,like.getUser_from());
             insertLikes.setInt(2,like.getUser_to());
             insertLikes.executeUpdate();
-           // likes.add(like);
-        }catch (SQLException e){
+            likes.add(like);
+        } catch (SQLException e){
             log.error("Can't inserted to likes", e);
         }
     }
+
 
     @Override
     public Iterator<Like> iterator() {

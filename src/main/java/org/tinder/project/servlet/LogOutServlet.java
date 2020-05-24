@@ -1,6 +1,7 @@
 package org.tinder.project.servlet;
 
 import lombok.extern.log4j.Log4j2;
+import org.tinder.project.service.LoginService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -12,10 +13,10 @@ import java.io.IOException;
 @Log4j2
 public class LogOutServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        LoginService loginService = new LoginService();
+        loginService.setLogged(false);
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -28,6 +29,7 @@ public class LogOutServlet extends HttpServlet {
             }
         }
         log.info("Log outed");
+
         resp.sendRedirect("/login");
     }
 

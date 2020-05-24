@@ -15,7 +15,6 @@ public class LoginService {
 
     public int check(User user){
         users.read();
-        users.getAllId();
         for (User u: users){
             if (u.checkEqual(user)){
                 isLogged = true;
@@ -27,5 +26,9 @@ public class LoginService {
 
     public boolean isLogged() {
         return isLogged;
+    }
+
+    public void setLogged(boolean logged) {
+        isLogged = logged;
     }
 }

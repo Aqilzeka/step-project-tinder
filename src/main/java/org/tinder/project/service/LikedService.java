@@ -14,11 +14,13 @@ public class LikedService {
     protected UserDAO users;
 
     public LikedService() {
-        this.likes = new LikeDAO();
-        this.users = new UserDAO();
+        likes = new LikeDAO();
+        users = new UserDAO();
     }
 
     public List<User> getLikedUsers(int localId) {
+        likes = new LikeDAO();
+        users = new UserDAO();
         List<Like> likedUsersIds = getLikedUserIds(localId);
         return users.stream()
                 .filter(user -> likedUsersIds.contains(new Like(localId, user.getId())))
