@@ -30,7 +30,6 @@ public class LikeService {
     }
 
 
-
     public void like(int user_to) {
         liked = true;
         Like like = new Like(id, user_to);
@@ -62,8 +61,9 @@ public class LikeService {
     public User getNext(int user_to) throws IndexOutOfBoundsException {
         userIds.remove(Integer.valueOf(user_to));
         if (!isLast()) return users.get(userIds.get(0));
-        else if (isLiked()) throw new IndexOutOfBoundsException();
-        else userIds = users.getAllId();
+        userIds = users.getAllId();
+        if (isLiked()) throw new IndexOutOfBoundsException();
+        System.out.println("Under isLiked()  ------> ");
         return null;
     }
 

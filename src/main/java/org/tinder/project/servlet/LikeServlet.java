@@ -20,12 +20,6 @@ public class LikeServlet extends HttpServlet {
     private User user;
 
 
-    public LikeServlet() {
-        user = service.getFirst();
-        System.out.println("Inside LikeServlet()");
-    }
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

@@ -49,8 +49,6 @@ public class LoginServlet extends HttpServlet {
         try {
             int id = loginService.check(new User(email, password));
             resp.addCookie(new Cookie("%ID%", String.valueOf(id)));
-            LikeServlet likeServlet = new LikeServlet();
-            likeServlet.doGet(req,resp);
             resp.sendRedirect("/like");
         } catch (Exception e) {
             log.warn("Yor password or email isn't correct");
