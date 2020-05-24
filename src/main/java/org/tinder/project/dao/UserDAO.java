@@ -92,8 +92,6 @@ public class UserDAO implements DAO<User> {
         }
     }
 
-
-
     @Override
     public List<User> getDatabase() {
         return users;
@@ -106,6 +104,7 @@ public class UserDAO implements DAO<User> {
 
     @Override
     public User get(int id) {
+        read();
         return stream().filter(user -> user.getId() == id).collect(Collectors.toList()).get(0);
     }
 
